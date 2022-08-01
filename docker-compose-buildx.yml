@@ -1,0 +1,56 @@
+version: "3.2"
+
+volumes:
+  redis_data: {}
+
+services:
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
+    command: redis-server --requirepass 'MyS3cr3t'
+    volumes:
+      - redis_data:/data
+
+  api:
+    image: ${DOCKER_REPO:-registry.gitlab.com/tikal-external/academy-public/images}/nodejs-ping:${DOCKER_VERSION:-latest}
+    build: 
+      context: ./src/api/
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
+    ports:
+      - 8080:8080
+    environment:
+      NODE_ENV: "docker"
+    depends_on:
+      - redis
+
+  consumer:
+    image: ${DOCKER_REPO:-registry.gitlab.com/tikal-external/academy-public/images}/pinger:${DOCKER_VERSION:-latest}
+    build:
+      context: ./src/pinger/
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
+    environment:
+      API_URL: http://api:8080
+    depends_on:
+      - api
+
+  client:
+    image: ${DOCKER_REPO:-registry.gitlab.com/tikal-external/academy-public/images}/poller:${DOCKER_VERSION:-latest}
+    build:
+      context: ./src/poller/
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
+    environment:
+      API_URL: http://api:8080
+    depends_on:
+      - api
+
