@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: pinger
+  name: pinger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pinger
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: pinger
+    spec:
+      containers:
+      - image: registry.gitlab.com/tikal-external/academy-public/images/pinger:latest@sha256:7f9e1c1c3aec91bf0642ede8e3f24681eb88f4b392173a4f7ae64a0bad31268d
+        name: pinger
+        command:
+          - /opt/tikal/pinger.sh
+        args:
+          # first argument to punger.sh
+          - "30"
+        resources: {}
+status: {}
