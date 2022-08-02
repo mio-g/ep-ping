@@ -10,4 +10,4 @@ resources:
  - ./redis/deployment.yaml
  - ./redis/svc.yaml
 
-namespace: my-namespace
+namespace: epsagon
