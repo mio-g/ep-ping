@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  # do what we did with the ingress lab
+  - ../ingress
+  - ./redis/pvc.yaml
+  - ./redis/secret.yaml
+
+  # Patch the ./manifests/redis/deployment.yaml deployment with ./redis/deployment.yaml
+
+patchesStrategicMerge:
+  - ./redis/deployment.yaml
+
+namespace: epsagon
+
