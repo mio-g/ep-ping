@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: epsagon
   labels:
     app: api
   name: api
@@ -15,7 +16,7 @@ spec:
         app: api
     spec:
       containers:
-      - image: registry.gitlab.com/tikal-external/academy-public/images/nodejs-ping:latest
+      - image: registry.gitlab.com/tikal-external/academy-public/images/nodejs-ping:no-auth
         name: nodejs-ping
         resources:
           requests:
