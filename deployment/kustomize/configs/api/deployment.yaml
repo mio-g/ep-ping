@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api
+  name: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - image: registry.gitlab.com/tikal-external/academy-public/images/nodejs-ping:latest
+        name: nodejs-ping
+        env:
+          - name: NODE_ENV
+            # the name of our configfile ... without .json
+            value: kubernetes
+            # see ./src/api/config/config.js for the api's defaul values
+          - name: REDIS_SERVICE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: redis-secret
+                key: REDIS_PASSWORD
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        volumeMounts:
+            # where exactly to mount the volume
+            # when not using subPath omit the file name jsut pass /opt/tikal/config
+          - mountPath: /opt/tikal/config/kubernetes.json
+            name: config
+            # optional - necesary in this case considering it overrides an existing file with that name already ...
+            subPath: kubernetes.json
+      volumes:
+      - name: config
+        configMap:
+          name: api-config
+status: {}

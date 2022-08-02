@@ -150,7 +150,7 @@ configMapGenerator:
   files:
     - kubernetes.json
 
-namespace: my-namespace
+namespace: epsagon
 EOF
 ```
 

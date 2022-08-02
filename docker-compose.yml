@@ -11,6 +11,7 @@ services:
       - 6379:6379
     command: redis-server --requirepass 'MyS3cr3t'
     volumes:
+      - $PWD/my-file:/path/in/continaer
       - redis_data:/data
 
   api:

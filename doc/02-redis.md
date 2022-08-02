@@ -120,7 +120,7 @@ kubectl port-forward svc/redis 6379:6379
 ## Checking connection using kubectl exec:
 
 ```sh
-kubectl exec -it `kubectl  get pod -l app=redis | grep redis| awk '{print $1}'` -- redis-cli GET pings
+kubectl exec -it `kubectl  get pod -l app=redis | grep redis| awk '{print $1}'` -- redis-cli ping
 ```
 
 should yield:

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+        # the backend of this ingress
+      - backend:
+          service:
+            # the name of the service representing the backend
+            name: api
+            port:
+              number: 8080
+              # smarter ;)
+              # name: http
+        path: /
+        pathType: Prefix
