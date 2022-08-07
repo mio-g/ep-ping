@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: check-kernel
+spec:
+  jobTemplate:
+    metadata:
+      name: check-time
+    spec:
+      template:
+        spec:
+          containers:
+          - image: alpine:latest
+            name: check-time
+            command:
+            - "/bin/sh"
+            - "-c"
+            - "uname -a"
+            resources: {}
+          restartPolicy: OnFailure
+  # Every minuete
+  schedule: '* * * * *' 
+  
+  # Every Friday at midnight, 
+  #  As well as on the 13th of each month at midnight:
+  # schedule: '0 0 13 * 5'
+  
+  # Every hour
+  # schedule: '@hourly'
+  
+  # Every day at midnight
+  # schedule: '@midnight'

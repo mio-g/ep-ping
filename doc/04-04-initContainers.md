@@ -171,5 +171,4 @@ continuing ...
 
 ---
 
-🆙 next - [HELM](05-00-helm.md) 
-
+🆙 next - [Jobs and CronJobs](04-jobs-n-cronjobs.md)
