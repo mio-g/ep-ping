@@ -122,11 +122,12 @@ As weve seen in the previous 🥼 Lab let's set the redis values for helm in the
 
 ```yaml
 redis:
-  cluster:
-    enabled: false
-  image:
-    tag: "5.0"
-  usePassword: false
+  enabled: true
+  fullnameOverride: redis
+  architecture: standalone
+  # auth:
+  #   enabled: false
+  #   password: "MyS3cr3t"
 ```
 
 > Add the `redis:` map to the `values.yaml` file we generated with the helm create command.
