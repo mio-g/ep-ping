@@ -83,7 +83,7 @@ See below we've added an environment variable specify `command` + the 1st comman
 # created by running:
 
 # to create pinger => copy and past the following lines 
-cat <<EOF>> ./deployment/kustomize/manifests/pinger/deployment.yaml
+cat <<EOF> ./deployment/kustomize/manifests/pinger/deployment.yaml
 
 apiVersion: apps/v1
 kind: Deployment
@@ -125,7 +125,7 @@ The following yaml represents the `api` svc
 # copy and past the following lines to get 
 # plesae not the name is `api` 
 
-cat <<EOF>> ./deployment/kustomize/manifests/api/svc.yaml
+cat <<EOF> ./deployment/kustomize/manifests/api/svc.yaml
 apiVersion: v1
 kind: Service
 metadata:
