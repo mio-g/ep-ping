@@ -126,7 +126,7 @@ kubectl exec -it `kubectl  get pod -l app=redis | grep redis| awk '{print $1}'` 
 should yield:
 
 ```sh
-""
+"PONG"
 ```
 
 After we deploy pinger we will run this again ... 
