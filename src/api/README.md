@@ -12,9 +12,12 @@ This service counts pings
 
 
 ## Configuration:
-* Service expect to find a configuration file at `.config/confg.js`
-* * redis_host
-* * redis_port
-* * redis_pass
-* Alternatively, an environment variable `REDIS_URL` can be provided.
-   
+* Service expect to find a configuration file at `.config/<env>.json` with configuration
+values. Please see `.config/config.js` for more details and alternative
+environment variables.
+* Service was tested with node 14.2
+
+
+## Runing:
+* Run `npm install`
+* run `npm start`
