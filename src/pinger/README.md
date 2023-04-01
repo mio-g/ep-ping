@@ -11,4 +11,4 @@ none
 * Api service port - `MSA_API_SERVICE_PORT` environment variable or 3rd command argument
 
 ## Runing:
-Just run pinger.sh shell script.
+Just run `pinger.sh` shell script.
