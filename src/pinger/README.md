@@ -5,6 +5,9 @@ This service produce pings to the ping api service.
 ## Endpoints
 none
 
+## Pre requisite
+* `curl` must be installed and available in `$path`
+
 ## Configuration
 * Pinging interval - `INTERVAL` environment variable or 1st command argument
 * Api service hostname - `MSA_API_SERVICE_HOST` environment variable or 2nd command argument
