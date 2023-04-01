@@ -20,4 +20,4 @@ environment variables.
 
 ## Runing:
 * Run `npm install`
-* run `npm start`
+* Run `npm start`
